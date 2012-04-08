@@ -84,14 +84,30 @@ class PagesController < ApplicationController
   # Public stuff
 
   def home
+    respond_to do |format|
+      format.html # home.html.erb
+      format.json { render json: @page }
+    end
   end
 
   def contact
+    respond_to do |format|
+      format.html # contact.html.erb
+      format.json { render json: @page }
+    end
   end
 
   def fun
+    respond_to do |format|
+      format.html # fun.html.erb
+      format.json { render json: @page }
+    end
   end
 
   def who
+    respond_to do |format|
+      format.html # who.html.erb
+      format.json { render json: @page }
+    end
   end
 end
