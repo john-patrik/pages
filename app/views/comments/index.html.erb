@@ -1,0 +1,7 @@
+<h1>Comments for page <%= @page.title %></h1>
+
+<p>This page has <%= @comments.count %> comments.</p>
+
+<%= link_to "Post a new comment", :new_page_comment %>
+<%= link_to "Testing new comment path", new_page_comment_path(@page) %>
+<%= link_to page_comments_url(@page) %>

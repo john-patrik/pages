@@ -1,12 +1,15 @@
 Pages::Application.routes.draw do
 
+
   match '/home' => 'pages#home', :as => :home
   match '/contact' => 'pages#contact', :as => :contact
   match '/fun' => 'pages#fun', :as => :fun
   match '/who' => 'pages#who', :as => :who
 
   scope "/admin" do
-    resources :pages
+    resources :pages do
+      resources :comments
+    end
   end
 
   #root :to => "static#home"
