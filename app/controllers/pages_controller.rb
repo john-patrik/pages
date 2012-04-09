@@ -83,31 +83,40 @@ class PagesController < ApplicationController
 
   # Public stuff
 
-  def home
-    respond_to do |format|
-      format.html # home.html.erb
-      format.json { render json: @page }
-    end
+  def home # Page id=1
+    @page = Page.find_by_id(1)
+
+    display_or_404(@page)
   end
 
-  def contact
-    respond_to do |format|
-      format.html # contact.html.erb
-      format.json { render json: @page }
-    end
+  def contact # Page id=2
+    @page = Page.find_by_id(2)
+
+    display_or_404(@page)
   end
 
-  def fun
-    respond_to do |format|
-      format.html # fun.html.erb
-      format.json { render json: @page }
-    end
+  def fun # Page id=3
+    @page = Page.find_by_id(3)
+
+    display_or_404(@page)
   end
 
-  def who
-    respond_to do |format|
-      format.html # who.html.erb
-      format.json { render json: @page }
+  def who # Page id=4
+    @page = Page.find_by_id(4)
+
+    display_or_404(@page)
+  end
+
+  private
+
+  def display_or_404(page)
+    if page.nil?
+      redirect_to "/404"
+    else
+      respond_to do |format|
+        format.html # home.html.erb
+        format.json { render json: page }
+      end
     end
   end
 end

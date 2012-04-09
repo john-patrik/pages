@@ -1,6 +1,4 @@
-<h1>Editing page</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @page %> |
-<%= link_to 'Back', pages_path %>
+<%- model_class = @page.class -%>
+<h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+                                 :default => "Edit #{model_class.model_name.human}") %></h1>
+<%= render :partial => 'form' %>
