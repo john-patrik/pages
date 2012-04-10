@@ -1,6 +1,5 @@
 Pages::Application.routes.draw do
 
-
   match '/home' => 'pages#home', :as => :home
   match '/contact' => 'pages#contact', :as => :contact
   match '/fun' => 'pages#fun', :as => :fun

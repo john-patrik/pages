@@ -3,9 +3,12 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @page = Page.find_by_id(params[:page_id])
+    if @page
+      @comments = @page.comments
+    end
     #@comments = Comment.all
-    @comments = []
-    @comments ||= @page.comments
+    #@comments = []
+    #@comments ||= @page.comments
 
     respond_to do |format|
       format.html # index.html.erb
@@ -39,6 +42,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @page = Page.find_by_id(params[:page_id])
     @comment = Comment.find(params[:id])
   end
 
@@ -46,7 +50,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @page = Page.find_by_id(params[:page_id])
-    #@comment = Comment.new(params[:comment])
+    @comment = Comment.new(params[:comment])
+    @comment.page = @page
 
     respond_to do |format|
       if @comment.save
@@ -78,11 +83,12 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @page = Page.find_by_id(params[:page_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to page_comments_path(@page) }
       format.json { head :no_content }
     end
   end

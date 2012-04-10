@@ -1,7 +1,20 @@
 <h1>Comments for page <%= @page.title %></h1>
 
-<p>This page has <%= @comments.count %> comments.</p>
+<div class="row">
+  <div class="span4">
+    <p>This page has <%= @comments.count %> comments.</p>
 
-<%= link_to "Post a new comment", :new_page_comment %>
-<%= link_to "Testing new comment path", new_page_comment_path(@page) %>
-<%= link_to page_comments_url(@page) %>
+    <%= link_to "Post a new comment", :new_page_comment, :class => "btn btn-success" %>
+    <%= link_to "This url", page_comments_url(@page) %>
+  </div>
+  <div class="span8">
+    <% @comments.each do |comment| %>
+      <div class="comment">
+        <p><%= comment.message %></p>
+        <p><%= link_to "Moar", page_comment_path(@page, comment) %></p>
+        <p><%= link_to "Edit", edit_page_comment_path(@page, comment) %></p>
+        <p><%= link_to "Destroy", page_comment_path(@page, comment), :method => :delete %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
